@@ -37,7 +37,7 @@ public class StarServlet extends HttpServlet {
 
         try (Connection connection = DriverManager.getConnection(loginUrl, loginUser, loginPasswd);
              Statement statement = connection.createStatement();
-             ResultSet resultSet = statement.executeQuery("SELECT * from stars limit 10");) {
+             ResultSet resultSet = statement.executeQuery("SELECT * from stars limit 10")) {
 
             Class.forName("com.mysql.jdbc.Driver");
 
