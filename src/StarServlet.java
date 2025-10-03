@@ -35,11 +35,15 @@ public class StarServlet extends HttpServlet {
         htmlOutput.println("<td>birth year</td>");
         htmlOutput.println("</tr>");
 
+        try {
+            Class.forName("com.mysql.jdbc.Driver");
+        } catch (ClassNotFoundException e) {
+            throw new RuntimeException(e);
+        }
+
         try (Connection connection = DriverManager.getConnection(loginUrl, loginUser, loginPasswd);
              Statement statement = connection.createStatement();
              ResultSet resultSet = statement.executeQuery("SELECT * from stars limit 10")) {
-
-            Class.forName("com.mysql.jdbc.Driver");
 
             while (resultSet.next()) {
                 String starID = resultSet.getString("id");
